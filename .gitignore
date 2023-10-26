@@ -4,4 +4,4 @@
 *.tfstate.backup
 *.tfstate.backup.*
 .terraform/
-./common/variables/variables.tf
+common/variables/variables.tf

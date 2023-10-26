@@ -1,10 +1,10 @@
 # your unique New Relic account ID 
 output "nr_account_id" {
-  value = ""
+  value = "3735684"
 }
 # your User API key
 output "nr_api_key" {
-  value = ""
+  value = "NRAK-ACCZLJGI9IBFX160ZLIZ3PLD0Q9"
 }
 
 # valid regions are US and EU
@@ -18,6 +18,6 @@ output "nr_appname" {
 }
 # your unique New Relic account ID for dev used in repalcer json
 output "nr_account_id_dev" {
-  value = ""
+  value = "4210328"
 }
 
