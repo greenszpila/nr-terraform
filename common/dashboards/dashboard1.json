@@ -1,0 +1,166 @@
+{
+    "name": "[SLM]-ListRecommendations-Latency-TF",
+    "description": null,
+    "permissions": "PUBLIC_READ_WRITE",
+    "pages": [
+      {
+        "name": "SLI Summary",
+        "description": null,
+        "widgets": [
+          {
+            "title": "SLO target: 95%",
+            "layout": {
+              "column": 1,
+              "row": 1,
+              "width": 4,
+              "height": 3
+            },
+            "linkedEntityGuids": null,
+            "visualization": {
+              "id": "viz.billboard"
+            },
+            "rawConfiguration": {
+              "dataFormatters": [
+                {
+                  "name": "SLO compliance (%)",
+                  "precision": "2",
+                  "type": "decimal"
+                }
+              ],
+              "nrqlQueries": [
+                {
+                  "accountIds": [
+                    "3735684"
+                  ],
+                  "query": "FROM Metric SELECT clamp_max(sum(newrelic.sli.good) / sum(newrelic.sli.valid) * 100, 100) as 'SLO compliance (%)' WHERE sli.guid = 'MzczNTY4NHxFWFR8U0VSVklDRV9MRVZFTHw0OTE0NDU' "
+                }
+              ],
+              "thresholds": [
+                {
+                  "alertSeverity": "CRITICAL",
+                  "value": 95
+                },
+                {
+                  "alertSeverity": "WARNING",
+                  "value": 96.25
+                }
+              ]
+            }
+          },
+          {
+            "title": "SLI compliance over time (%)",
+            "layout": {
+              "column": 5,
+              "row": 1,
+              "width": 8,
+              "height": 3
+            },
+            "linkedEntityGuids": null,
+            "visualization": {
+              "id": "viz.line"
+            },
+            "rawConfiguration": {
+              "markers": {
+                "entities": [
+                  {
+                    "guid": "MzczNTY4NHxFWFR8U0VSVklDRV9MRVZFTHw0OTE0NDU"
+                  },
+                  {
+                    "guid": "MzczNTY4NHxFWFR8S0VZX1RSQU5TQUNUSU9OfDE1NjUyNTk1ODI5ODA1MjQwNDc3"
+                  }
+                ]
+              },
+              "nrqlQueries": [
+                {
+                  "accountIds": [
+                    "3735684"
+                  ],
+                  "query": "FROM Metric SELECT clamp_max(sum(newrelic.sli.good) / sum(newrelic.sli.valid) * 100, 100) as 'SLO compliance' , 95 as 'SLO target' WHERE sli.guid = 'MzczNTY4NHxFWFR8U0VSVklDRV9MRVZFTHw0OTE0NDU' UNTIL 2 minutes AGO  TIMESERIES AUTO"
+                }
+              ],
+              "yAxisLeft": {
+                "zero": false
+              }
+            }
+          },
+          {
+            "title": "Error budget",
+            "layout": {
+              "column": 1,
+              "row": 4,
+              "width": 4,
+              "height": 3
+            },
+            "linkedEntityGuids": null,
+            "visualization": {
+              "id": "viz.billboard"
+            },
+            "rawConfiguration": {
+              "dataFormatters": [
+                {
+                  "name": "Remaining error budget (%)",
+                  "precision": 2,
+                  "type": "decimal"
+                }
+              ],
+              "nrqlQueries": [
+                {
+                  "accountIds": [
+                    "3735684"
+                  ],
+                  "query": "FROM Metric SELECT (clamp_min(clamp_max(sum(newrelic.sli.good) / sum(newrelic.sli.valid) * 100, 100) - 95, 0) / (100 - 95)) * 100 as 'Remaining error budget (%)' WHERE sli.guid = 'MzczNTY4NHxFWFR8U0VSVklDRV9MRVZFTHw0OTE0NDU' "
+                }
+              ],
+              "thresholds": [
+                {
+                  "alertSeverity": "CRITICAL",
+                  "value": 0.0001
+                },
+                {
+                  "alertSeverity": "WARNING",
+                  "value": 0.001
+                }
+              ]
+            }
+          },
+          {
+            "title": "Good and bad events",
+            "layout": {
+              "column": 5,
+              "row": 4,
+              "width": 8,
+              "height": 3
+            },
+            "linkedEntityGuids": null,
+            "visualization": {
+              "id": "viz.area"
+            },
+            "rawConfiguration": {
+              "markers": {
+                "entities": [
+                  {
+                    "guid": "MzczNTY4NHxFWFR8U0VSVklDRV9MRVZFTHw0OTE0NDU"
+                  },
+                  {
+                    "guid": "MzczNTY4NHxFWFR8S0VZX1RSQU5TQUNUSU9OfDE1NjUyNTk1ODI5ODA1MjQwNDc3"
+                  }
+                ]
+              },
+              "nrqlQueries": [
+                {
+                  "accountIds": [
+                    "3735684"
+                  ],
+                  "query": "FROM Metric SELECT sum(newrelic.sli.good) as 'Good', clamp_min(sum(newrelic.sli.valid) - sum(newrelic.sli.good), 0) as 'Bad' WHERE sli.guid = 'MzczNTY4NHxFWFR8U0VSVklDRV9MRVZFTHw0OTE0NDU' UNTIL 2 minutes AGO  TIMESERIES AUTO "
+                }
+              ],
+              "yAxisLeft": {
+                "zero": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "variables": []
+  }
