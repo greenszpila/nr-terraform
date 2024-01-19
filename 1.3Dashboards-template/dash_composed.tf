@@ -1,4 +1,5 @@
-# This defines the values we're expecting per widget - see terraform.tfvars for the actual configured values
+#define a data type to hold a list of services you want to display in your dashboard. 
+#This defines the values we're expecting per widget - see terraform.tfvars for the actual configured values
 variable "config" {
     type = list(object({
         name = string

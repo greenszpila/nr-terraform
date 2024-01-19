@@ -1,9 +1,5 @@
-# importing vars module to use var for the replacer account
-module "global_vars2" {
-  source = "../common/variables"
-}
 
-# Here we domnstrate using replace() to change the dashboard name and set the account ID from the source file to the accountId variable supplied
+# Here we demonstrate using replace() to change the dashboard name and set the account ID from the source file to the accountId variable supplied
 
 resource "newrelic_one_dashboard_json" "replacer_dashboard" {
    json = replace(
@@ -14,8 +10,7 @@ resource "newrelic_one_dashboard_json" "replacer_dashboard" {
         ,"renamed by Terraform"
       ),
     "3491187",      # This is the hard coded value in the source file
-    #"4210328"
-    module.global_vars2.nr_account_id_dev   # This is the value to change that hard coded value to, basically my dev account
+    module.global_vars.nr_account_id_dev   # This is the value to change that hard coded value to, basically my dev account
     )
 }
 

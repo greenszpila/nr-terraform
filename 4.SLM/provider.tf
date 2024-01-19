@@ -19,7 +19,5 @@ terraform {
 provider "newrelic" {
   account_id = (module.global_vars.nr_account_id)
   api_key = (module.global_vars.nr_api_key)    # usually prefixed with 'NRAK'
-  # create tags as BASIC USER
-  #api_key = (module.global_vars.nr_api_key_basic)
   region = (module.global_vars.nr_region)      # Valid regions are US and EU
 }

@@ -6,7 +6,10 @@ output "nr_account_id" {
 output "nr_api_key" {
   value = ""
 }
-
+# Basic User API key
+output "nr_api_key_basic" {
+  value = ""
+}
 # valid regions are US and EU
 output "nr_region" {
   value = "US"
@@ -14,6 +17,7 @@ output "nr_region" {
 
 # your unique New Relic App ID 
 output "nr_appname" {
+  //value = "Relicstaurants2"
   value = "r-restaurantService"
 }
 # your unique New Relic account ID for dev used in repalcer json

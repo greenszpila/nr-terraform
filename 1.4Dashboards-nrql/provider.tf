@@ -17,9 +17,8 @@ terraform {
 }
 
 provider "newrelic" {
-  account_id = (module.global_vars.nr_account_id_dev)
+  account_id = (module.global_vars.nr_account_id)
   api_key = (module.global_vars.nr_api_key)    # usually prefixed with 'NRAK'
   region = (module.global_vars.nr_region)      # Valid regions are US and EU
 }
 
-variable "accountId" { type = string }

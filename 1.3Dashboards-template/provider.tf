@@ -21,5 +21,5 @@ provider "newrelic" {
   api_key = (module.global_vars.nr_api_key)    # usually prefixed with 'NRAK'
   region = (module.global_vars.nr_region)      # Valid regions are US and EU
 }
-
+# you will get prompted at terraform apply to type the account ID number as the value is not provided here, only data type.
 variable "accountId" { type = string }

@@ -1,7 +1,8 @@
 # 2.Data Source
 
 data "newrelic_entity" "app_name" {
-  name = "r-restaurantService" # Note: This must be an exact match of your app name in New Relic (Case sensitive)
+  //name = "Relicstaurants2" # Note: This must be an exact match of your app name in New Relic (Case sensitive)
+  name = "r-restaurantService"
   type = "APPLICATION"
   domain = "APM"
 }
